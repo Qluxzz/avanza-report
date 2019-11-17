@@ -89,17 +89,19 @@ def get_avanza_weekly_report():
         'date_range': date_range
     }
 
+def render_html_template(data):
+    template = TEMPLATE_ENVIRONMENT.get_template('index.html')
+    return template.render(data)
+
 
 def main():
-    template = TEMPLATE_ENVIRONMENT.get_template('index.html')
-
     weekly_rapport_data = get_avanza_weekly_report()
-
-    html = template.render(weekly_rapport_data)
 
     subject = 'Veckorapport från Avanza, {}'.format(
         weekly_rapport_data['date_range']
     )
+
+    html = render_html_template(weekly_rapport_data)
 
     send_mail(subject, html)
 
