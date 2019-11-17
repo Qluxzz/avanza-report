@@ -18,5 +18,6 @@ ACCOUNT_ID='avanza_account_id'
 If you have enabled 2FA for your Gmail account, you can generate an app password [here](https://support.google.com/accounts/answer/185833?hl=en) and use it
 
 ## Avanza credentails
-This script uses my Python Library for Avanza, which you can find https://github.com/Qluxzz/avanza
+This script uses my Python Library for Avanza, which you can find here https://github.com/Qluxzz/avanza.
+
 In the readme you can find out how to generate your ``` TOTPSECRET ```
