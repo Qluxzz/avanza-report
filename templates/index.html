@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Veckorapport Avanza</title>
+</head>
+
+<body style="width: 500px;">
+    <!-- Total -->
+    <h1>Total värdeutveckling</p> </h1>
+    <h2 style="color: {{ 'green' if total_development > 0 else 'red'}}">{{total_development}} kr</h2>
+    <hr />
+    <!-- Outcome per position -->
+    <table style="width: 100%;">
+        {% for position in positions %}
+        <tr>
+            <td>{{position.name}}</td>
+            <td style="text-align: right;color: {{ 'green' if position.outcomeTotal > 0 else 'red'}}">{{position.outcomePercent}} %</td>
+            <td style="text-align: right;color: {{ 'green' if position.outcomeTotal > 0 else 'red'}}">{{position.outcomeTotal}} kr</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
