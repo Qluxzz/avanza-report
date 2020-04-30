@@ -1,6 +1,5 @@
 import configparser
 import os
-import json
 import smtplib
 from datetime import date
 
@@ -8,7 +7,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from avanza import Avanza, CONSTANTS
+from avanza import Avanza, TimePeriod
 
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -49,8 +48,8 @@ def get_positions_by_outcome(data):
         for position in instrument['positions']:
             positions.append({
                 'name': position['shortName'],
-                'outcomeTotal': position['outcome']['total'],
-                'outcomePercent': position['outcome']['totalDevelopmentInPercent']
+                'outcomeTotal': round(position['outcome']['total']),
+                'outcomePercent': round(position['outcome']['totalDevelopmentInPercent'], 2)
             })
 
     positions.sort(
@@ -70,11 +69,11 @@ def get_avanza_weekly_report():
     account_id = CONFIG['AVANZA']['ACCOUNT_ID']
 
     data = avanza.get_insights_report(
-        CONSTANTS['public']['ONE_WEEK'],
+        TimePeriod.ONE_WEEK,
         account_id
     )
 
-    total_development = data['developmentResponse']['totalOutcome']['total']
+    total_development = round(data['developmentResponse']['totalOutcome']['total'])
 
     date_range = '{} - {}'.format(
         data['fromDate'],
