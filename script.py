@@ -72,8 +72,8 @@ def get_avanza_weekly_report():
     account_id = CONFIG['AVANZA']['ACCOUNT_ID']
 
     data = avanza.get_insights_report(
-        TimePeriod.ONE_WEEK,
-        account_id
+        account_id,
+        TimePeriod.ONE_WEEK
     )
 
     total_development = round(data['developmentResponse']['totalOutcome']['total'])
